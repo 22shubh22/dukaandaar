@@ -29,18 +29,16 @@ class Tag(models.Model):
         return self.tag
 
 class Mal(models.Model):
-    name = models.CharField(max_length=250, blank=True, null=True, unique=True)
+    name = models.CharField(max_length=250, null=True, unique=True)
     description = models.CharField(max_length=250, blank=True, null=True, unique=True)
     dukaan = models.ForeignKey(
         Dukaan,
         related_name="mal_dukaan",
-        #TODO: check whether on deleting dukaan, all it's mal are also deleted.
         on_delete=models.CASCADE,
     )
-    quantity = models.CharField(max_length=20, blank=True, null=True)
+    quantity = models.CharField(max_length=20, blank=True, null=True, default="1")
     photo_link = models.CharField(max_length=200, blank=True, null=True)
     selling_price = models.CharField(max_length=20, blank=True, null=True)
-    active_status = models.BooleanField(default=1)
     tags = models.ManyToManyField(
         Tag,
         related_name="mal_tag",

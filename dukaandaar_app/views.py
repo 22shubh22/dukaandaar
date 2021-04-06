@@ -62,10 +62,19 @@ class DukaaanUpdateAPI(UpdateAPIView):
     queryset = Dukaan.objects.all()
     # permission_classes = [permissions.IsAuthenticated]
 
-class MalView(CreateAPIView):
+class CreateMalAPI(CreateAPIView):
     """
     API endpoint that allows groups to be viewed or edited.
+    Data:
+        {
+            "name": "product_name",
+            "description" : "product_description",
+            "dukaan" : 1,
+            "quantity": "1",
+            "photo_link" : "will_be_max_upto_four",
+            "selling_price" : "500"
+        }
     """
     queryset = Mal.objects.all()
     serializer_class = MalSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
