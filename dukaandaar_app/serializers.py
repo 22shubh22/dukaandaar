@@ -6,6 +6,12 @@ class DukaanSerializer(serializers.ModelSerializer):
         model = Dukaan
         fields = "__all__"
 
+class DukaanUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dukaan
+        fields = "__all__"
+        read_only_fields = ("created_at",)
+
 
 class MalSerializer(serializers.ModelSerializer):
     class Meta:

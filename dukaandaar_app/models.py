@@ -12,6 +12,9 @@ class Dukaan(models.Model):
     dukaan_name = models.CharField(max_length=250, blank=True, null=True)
     contact_no = models.CharField(max_length=20, blank=True, null=True)
     address = models.CharField(max_length=250, blank=True, null=True)
+    active_status = models.BooleanField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
         if self.name:

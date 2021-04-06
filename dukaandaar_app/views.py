@@ -1,14 +1,14 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import DukaanSerializer, MalSerializer
+from .serializers import DukaanSerializer, DukaanUpdateSerializer, MalSerializer
 from .models import Dukaan, Mal
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, ListAPIView
 from rest_framework.response import Response
 from django.db import transaction
 from rest_framework import status
 
-class DukaanView(CreateAPIView):
+class CreateDukaanAPI(CreateAPIView):
     """
     API endpoint that allows users to be viewed or edited.
 
@@ -46,6 +46,21 @@ class DukaanView(CreateAPIView):
             transaction.rollback()
             return Response({"message": str(e)}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
+class DukaaanUpdateAPI(UpdateAPIView):
+    """
+    Dukaan Update API
+        Authentication Required: Yes
+        Data:
+        {
+            "dukaan_name": "keycube1",
+            "contact_no" : "7780923457",
+            "address": "Beldagi",
+            "active_status": 0
+        }
+    """
+    serializer_class = DukaanUpdateSerializer
+    queryset = Dukaan.objects.all()
+    # permission_classes = [permissions.IsAuthenticated]
 
 class MalView(CreateAPIView):
     """
