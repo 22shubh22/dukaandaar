@@ -17,3 +17,9 @@ class MalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mal
         fields = "__all__"
+
+class MalUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mal
+        fields = "__all__"
+        read_only_fields = ("created_at",)

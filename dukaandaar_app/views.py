@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import DukaanSerializer, DukaanUpdateSerializer, MalSerializer
+from .serializers import *
 from .models import Dukaan, Mal
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, ListAPIView
 from rest_framework.response import Response
@@ -78,3 +78,32 @@ class CreateMalAPI(CreateAPIView):
     queryset = Mal.objects.all()
     serializer_class = MalSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+class MalRetrievalAPI(RetrieveAPIView):
+    """
+    Mal Retrieval GET API
+        Service usage and description : This API is used to retrieve kagibase users.
+        Authentication Required : YES
+    """
+
+    # TODO: add permissions
+    serializer_class = MalSerializer
+    queryset = Mal.objects.all()
+
+class MalUpdateAPI(UpdateAPIView):
+    """
+    Mal Update API
+        Authentication Required: Yes
+        Data:
+        {
+            "name": "jeans",
+            "description" : "Ladies Jeans",
+            "quantity": "1"
+            "photo_link": "Image link"
+            "selling_price": "1000"
+        }
+    """
+
+    # permissions
+    serializer_class = MalUpdateSerializer
+    queryset = Mal.objects.all()
