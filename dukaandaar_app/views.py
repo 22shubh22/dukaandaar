@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from .serializers import *
 from .models import Dukaan, Mal
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, ListAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView, ListAPIView, DestroyAPIView
 from rest_framework.response import Response
 from django.db import transaction
 from rest_framework import status
@@ -104,6 +104,13 @@ class MalUpdateAPI(UpdateAPIView):
         }
     """
 
-    # permissions
+    # TODO: permissions
     serializer_class = MalUpdateSerializer
+    queryset = Mal.objects.all()
+
+class MalDeleteAPI (DestroyAPIView):
+    """
+    Mal Delete API
+    """
+    serializer_class = MalSerializer
     queryset = Mal.objects.all()

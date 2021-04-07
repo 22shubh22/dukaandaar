@@ -7,4 +7,5 @@ urlpatterns = [
     path("mal/create/", CreateMalAPI.as_view()),
     path("mal/<int:pk>/", MalRetrievalAPI.as_view()),
     path("mal/ud/<int:pk>/", MalUpdateAPI.as_view()),
+    path("mal/delete/<int:pk>/", MalDeleteAPI.as_view()),
 ]

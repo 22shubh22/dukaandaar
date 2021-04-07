@@ -17,8 +17,8 @@ class Dukaan(models.Model):
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     def __str__(self):
-        if self.name:
-            return self.name
+        if self.dukaan_name:
+            return self.dukaan_name
         return str(self.id)
 
 class Tag(models.Model):
